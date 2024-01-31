@@ -5,7 +5,7 @@ function MyfirstButton({name, click}){
     //console.log(name)
     return(
         <div>
-            <button onClick={click} style={thisStyle.hideButton} >
+            <button onClick={click}  >
                 {name}
             </button>
         </div>

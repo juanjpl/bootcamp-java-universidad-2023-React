@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { getPersona, getValor } from "./app-utils/app-utils";
 import Auto from "./app-utils/app-utils";
@@ -11,14 +11,17 @@ import { UserDetails } from "./user/user-ui/ui/UserDetails";
 function App() {
 
   const[user, setUser] = useState(undefined); 
+  const[cont , setCont] = useState(1);
+  const[userMails , setUserMails] = useState(new Set([]));
 
 const get = async(e) =>{
 
   //debugger;
-  const url = "https://reqres.in/api/users/2";
+  const url = `https://reqres.in/api/users/${cont}`;
   const user = await getUser(url);
-  console.log(user);
+  //console.log(user);
   setUser(prev=> user);
+  setCont(prev => prev+1);
 }
 
 const resetUser =()=>{
@@ -73,6 +76,21 @@ const resetUser =()=>{
     const nuevoAuto = new Auto('Pirulo');
     nuevoAuto.acelerar();
   }
+
+  //*********************************************************************** */
+//hook useeffect ... 
+  useEffect(()=>{
+console.log(user)
+console.log('Nuevo Usuario')
+
+if(user){
+  userMails.add(user.email);
+  //setUserMails(prev => prevs);
+  console.log(userMails);
+}
+  },[user])
+
+
 
   return (
     <>

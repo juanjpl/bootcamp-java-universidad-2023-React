@@ -1,7 +1,11 @@
+import { useEffect } from "react"
 
 
 export function UserDetails({user}=props){
 
+    useEffect(()=>{
+        return ()=>{console.log('componente destruido!')}
+    },[])
 
     return(
         <>
