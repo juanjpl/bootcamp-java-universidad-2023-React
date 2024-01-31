@@ -2,14 +2,28 @@ import { useState } from "react";
 import "./App.css";
 import { getPersona, getValor } from "./app-utils/app-utils";
 import Auto from "./app-utils/app-utils";
+import MyfirstButton from "./user/create/ui/Button";
+import { getUser } from "./user/get/application/get-user";
+import { UserDetails } from "./user/user-ui/ui/UserDetails";
 
 /*App es la funcion ( componente ) principal, o que se carga primero */
 
-function App({datos}) {
-//desestructuring
+function App() {
 
+  const[user, setUser] = useState(undefined); 
 
-console.log(datos);
+const get = async(e) =>{
+
+  //debugger;
+  const url = "https://reqres.in/api/users/2";
+  const user = await getUser(url);
+  console.log(user);
+  setUser(prev=> user);
+}
+
+const resetUser =()=>{
+  setUser(prev => undefined);
+}
 
 
   const [valor, setValor] = useState(getValor);
@@ -82,6 +96,20 @@ console.log(datos);
       <button onClick={guardarPersona}>Guardar Persona</button>
       <hr />
       <button onClick={acelerarAuto}>Acelerar</button>
+      {/* agregamos un nuevo componente */}
+      <MyfirstButton
+       name={"Get User"} click={get}/>
+      <MyfirstButton name={"Set User"} click={resetUser}/>
+
+<hr />
+{
+  user?
+  <UserDetails user={user}/>
+  :
+  <h1>Primero busque un user....</h1>
+}
+     
+
     </>
   );
 }
