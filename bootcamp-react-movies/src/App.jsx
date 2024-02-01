@@ -17,7 +17,7 @@ function App() {
 const get = async(e) =>{
 
   //debugger;
-  const url = `https://reqres.in/api/users/${cont}`;
+  const url = `${import.meta.env.VITE_REQ_SINGLE_USER}/${cont}`;
   const user = await getUser(url);
   //console.log(user);
   setUser(prev=> user);
@@ -85,7 +85,8 @@ console.log('Nuevo Usuario')
 
 if(user){
   userMails.add(user.email);
-  //setUserMails(prev => prevs);
+  //
+  setUserMails(prev => prevs);
   console.log(userMails);
 }
   },[user])
