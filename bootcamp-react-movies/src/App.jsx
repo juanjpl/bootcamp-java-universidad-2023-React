@@ -1,33 +1,34 @@
 import { useEffect, useState } from "react";
+import { Provider } from "react-redux";
 import "./App.css";
 import { getPersona, getValor } from "./app-utils/app-utils";
 import Auto from "./app-utils/app-utils";
 import MyfirstButton from "./user/create/ui/Button";
 import { getUser } from "./user/get/application/get-user";
 import { UserDetails } from "./user/user-ui/ui/UserDetails";
+import { UserPage } from "./user/page/UserPage";
+import EcommerceStore from "./redux/store";
+import { AppRouter } from "./AppRouter";
 
 /*App es la funcion ( componente ) principal, o que se carga primero */
 
 function App() {
+  const [user, setUser] = useState(undefined);
+  const [cont, setCont] = useState(1);
+  const [userMails, setUserMails] = useState(new Set([]));
 
-  const[user, setUser] = useState(undefined); 
-  const[cont , setCont] = useState(1);
-  const[userMails , setUserMails] = useState(new Set([]));
+  const get = async (e) => {
+    //debugger;
+    const url = `${import.meta.env.VITE_REQ_SINGLE_USER}/${cont}`;
+    const user = await getUser(url);
+    //console.log(user);
+    setUser((prev) => user);
+    setCont((prev) => prev + 1);
+  };
 
-const get = async(e) =>{
-
-  //debugger;
-  const url = `${import.meta.env.VITE_REQ_SINGLE_USER}/${cont}`;
-  const user = await getUser(url);
-  //console.log(user);
-  setUser(prev=> user);
-  setCont(prev => prev+1);
-}
-
-const resetUser =()=>{
-  setUser(prev => undefined);
-}
-
+  const resetUser = () => {
+    setUser((prev) => undefined);
+  };
 
   const [valor, setValor] = useState(getValor);
   //definir otro estado pero con un objeto
@@ -72,29 +73,28 @@ const resetUser =()=>{
     );
   };
 
-  const acelerarAuto =()=>{
-    const nuevoAuto = new Auto('Pirulo');
+  const acelerarAuto = () => {
+    const nuevoAuto = new Auto("Pirulo");
     nuevoAuto.acelerar();
-  }
+  };
 
   //*********************************************************************** */
-//hook useeffect ... 
-  useEffect(()=>{
-console.log(user)
-console.log('Nuevo Usuario')
+  //hook useeffect ...
+  useEffect(() => {
+    console.log(user);
+    console.log("Nuevo Usuario");
 
-if(user){
-  userMails.add(user.email);
-  //
-  setUserMails(prev => prevs);
-  console.log(userMails);
-}
-  },[user])
-
-
+    if (user) {
+      userMails.add(user.email);
+      //
+      setUserMails((prev) => prevs);
+      console.log(userMails);
+    }
+  }, [user]);
 
   return (
     <>
+      {/* agregamos un nuevo componente 
       <h1>Juan lima</h1>
       <input value={valor} onChange={(e) => cambiarValor(e.target.value)} />
       <hr />
@@ -115,7 +115,7 @@ if(user){
       <button onClick={guardarPersona}>Guardar Persona</button>
       <hr />
       <button onClick={acelerarAuto}>Acelerar</button>
-      {/* agregamos un nuevo componente */}
+      {/* agregamos un nuevo componente *
       <MyfirstButton
        name={"Get User"} click={get}/>
       <MyfirstButton name={"Set User"} click={resetUser}/>
@@ -127,8 +127,11 @@ if(user){
   :
   <h1>Primero busque un user....</h1>
 }
-     
+*/}
 
+      <Provider store={EcommerceStore}>
+        <AppRouter></AppRouter>
+      </Provider>
     </>
   );
 }
