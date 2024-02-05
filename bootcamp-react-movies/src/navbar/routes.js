@@ -4,7 +4,8 @@
         INDEX:'/',
         USER_PAGE:'/userPage',
         HOME:'/home',
-        RXJS:'/rxjs'
+        RXJS:'/rxjs',
+        REQ_RES:'reqapi'
     },
     private:{
 

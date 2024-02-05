@@ -1,13 +1,15 @@
 import React from "react";
+import { routes } from "./routes";
 import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <>
-      <NavLink to={"/"}>Home2</NavLink>
-      <NavLink to={"/userPage"}>User Page</NavLink>
-      <NavLink to={"/home"}>Home</NavLink>
-      <NavLink to={"/rxjs"}>Rxjs</NavLink>
+      <NavLink to={routes.public.INDEX}>Home2</NavLink>
+      <NavLink to={routes.public.USER_PAGE}>User Page</NavLink>
+      <NavLink to={routes.public.HOME}>Home</NavLink>
+      <NavLink to={routes.public.RXJS}>Rxjs</NavLink>
+      <NavLink to={routes.public.REQ_RES}>ReqAPI</NavLink>
     </>
   );
 };
