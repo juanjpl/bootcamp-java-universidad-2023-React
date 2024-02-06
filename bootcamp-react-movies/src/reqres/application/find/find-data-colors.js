@@ -1,5 +1,5 @@
 
-import { toResourceEntity } from "../../infrastructure/resource-adapter";
+import { toResourceEntity } from "../../infrastructure/resource-adapter-color";
 
 export const findResource = (repository) => {
   //por medio de un repository que esta application

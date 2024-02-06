@@ -9,6 +9,7 @@ import { UserDetails } from "./user/user-ui/ui/UserDetails";
 import { UserPage } from "./user/page/UserPage";
 import EcommerceStore from "./redux/store";
 import { AppRouter } from "./AppRouter";
+import "/node_modules/primeflex/primeflex.css";
 
 /*App es la funcion ( componente ) principal, o que se carga primero */
 

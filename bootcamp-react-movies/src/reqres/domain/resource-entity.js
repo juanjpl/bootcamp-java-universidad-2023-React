@@ -8,6 +8,6 @@ export const entity = (id,name,year,color,pantone_value)=>{
         name:name,
         year:year,
         color:color,
-        pantone:pantone_value
+        pantone_value:pantone_value
     }
 }
