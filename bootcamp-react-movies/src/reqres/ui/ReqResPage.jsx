@@ -45,14 +45,15 @@ export const ReqResPage = () => {
             <div className="col-lg-12 col-md-9  d-flex justify-content-center flex-wrap w-screen p-0 m-0">
             {colors.map((color, index) => {
                 return (
-                  <div key={index} className=" col-lg-3 col-md-4  mt-3 m-0">
+                  <div key={index} className=" col-lg-3 col-md-4  mt-3 m-0 p-1">
                     <Badge
                       value={color.name}
                       size="xlarge"
                       style={{
                         backgroundColor: `#${color.hex}`,
+                        color:`${(color.theme === 'light')?"grey":"white"}`,
                         height: "60px",
-                        width: "250px",
+                        width: "90%",
                       }}
                     ></Badge>
                   </div>
