@@ -6,6 +6,7 @@ import Navbar from "./navbar/Navbar";
 import { routes } from "./navbar/routes";
 import { Component1 } from "./rxjs/Component1";
 import { ReqResPage } from "./reqres/ui/ReqResPage";
+import { PokemonHome } from "./pokemon/ui/PokemonHome";
 
 export function AppRouter() {
   return (
@@ -19,6 +20,8 @@ export function AppRouter() {
           <Route path={routes.public.USER_PAGE} element={<UserPage />}></Route>
           <Route path={routes.public.HOME} element={<UserDetails />}></Route>
           <Route path={routes.public.RXJS} element={<Component1 />}></Route>
+          <Route path={routes.public.REQ_RES} element={<ReqResPage />}></Route>
+          <Route path={routes.public.POKE_HOME} element={<PokemonHome />}></Route>
           <Route path={routes.public.REQ_RES} element={<ReqResPage />}></Route>
         </Routes>
       </BrowserRouter>

@@ -5,7 +5,8 @@
         USER_PAGE:'/userPage',
         HOME:'/home',
         RXJS:'/rxjs',
-        REQ_RES:'reqapi'
+        REQ_RES:'reqapi',
+        POKE_HOME:'/pokehome'
     },
     private:{
 
