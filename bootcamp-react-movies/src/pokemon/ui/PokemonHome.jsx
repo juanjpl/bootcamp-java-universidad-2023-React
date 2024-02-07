@@ -69,7 +69,7 @@ export const PokemonHome = () => {
                   <div key={index} className=" col-lg-3 col-md-4  mt-3 m-0 p-1" >
                     <h3>{pokemon.name}</h3>
                     <img src={pokemon.sprites.other.dream_world.front_default
-                    } alt="poke-image" style={{width:"50%"}} />
+                    } alt="poke-image" style={{width:"50%" , height:"80%"}} />
                   
                   </div>
                 );
