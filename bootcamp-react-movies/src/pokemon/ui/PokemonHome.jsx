@@ -51,10 +51,14 @@ export const PokemonHome = () => {
      
   }
 
+  const reset =()=>{
+    setPokeData([]);
+  }
   return (
     <div>
       <h2>Pokemons</h2>
       <button onClick={getAll}>Get them all!</button>
+      <button onClick={reset}>Reset</button>
       <div className="container w-screen m-0 p-0">
         <div className="row d-flex flex-wrap  align-content-start w-screen p-0 m-0">
           

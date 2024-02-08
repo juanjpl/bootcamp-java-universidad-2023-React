@@ -10,7 +10,10 @@ const Navbar = () => {
       <NavLink to={routes.public.HOME}>Home</NavLink>
       <NavLink to={routes.public.RXJS}>Rxjs</NavLink>
       <NavLink to={routes.public.REQ_RES}>ReqAPI</NavLink>
-      <NavLink to={routes.public.POKE_HOME}>ReqAPI</NavLink>
+      <NavLink to={routes.public.POKE_HOME}>PokeApi</NavLink>
+      <NavLink to={routes.public.CONTEXT}>Context</NavLink>
+      <NavLink to={routes.private.ACCOUNT}>Account</NavLink>
+      <NavLink to={routes.private.ADMIN}>Admin</NavLink>
     </>
   );
 };

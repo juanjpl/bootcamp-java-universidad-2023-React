@@ -7,9 +7,11 @@ import { findResource } from "../application/find/find-data-colors";
 import { resourceRepository } from "../infrastructure/fetch-resources-repository";
 import { appConfig } from "../../config";
 import "/node_modules/primeflex/primeflex.css";
+import { useNavigate } from "react-router-dom";
 
 export const ReqResPage = () => {
   const [colors, setColors] = useState("");
+  const history = useNavigate();
 
   const saludar = () => {
     console.log("Hola....");
@@ -29,6 +31,10 @@ export const ReqResPage = () => {
     setColors(myListResources);
   };
 
+  const redirect = ()=>{
+    history('/pokehome')
+  }
+
   return (
     <PrimeReactProvider>
       <div className="container w-screen m-0 p-0">
@@ -36,6 +42,7 @@ export const ReqResPage = () => {
           <div className="col-xl-12 col-lg-10 col-md-9  d-flex justify-content-center w-screen p-0 m-0">
             <Button label="Saludar" onClick={saludar} />
             <Button label="Get Data Table" onClick={findData} />
+            <Button label="Go Poke API" onClick={redirect} />
           </div>
 
           {!colors ? (

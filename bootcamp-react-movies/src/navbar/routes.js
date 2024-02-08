@@ -6,9 +6,12 @@
         HOME:'/home',
         RXJS:'/rxjs',
         REQ_RES:'reqapi',
-        POKE_HOME:'/pokehome'
+        POKE_HOME:'/pokehome',
+        CONTEXT:'/context'
     },
     private:{
+        ADMIN:'/admin',
+        ACCOUNT:'/account'
 
     }
 }
