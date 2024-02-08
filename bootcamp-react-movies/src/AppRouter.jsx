@@ -10,6 +10,8 @@ import { PokemonHome } from "./pokemon/ui/PokemonHome";
 import AuthGuard from "./commons/AuthGuard";
 import { Account } from "./account/Account";
 import { Admin } from "./admin/Admin";
+import { Profile } from "./profile/Profile";
+import { Login } from "./login/Login";
 
 export function AppRouter() {
   return (
@@ -25,6 +27,8 @@ export function AppRouter() {
           <Route path={routes.public.RXJS} element={<Component1 />}></Route>
           <Route path={routes.public.POKE_HOME} element={<PokemonHome />}></Route>
           <Route path={routes.public.CONTEXT} element={<Component1 />}></Route>
+          <Route path={routes.public.PROFILE} element={<Profile />}></Route>
+          <Route path={routes.public.LOGIN} element={<Login />}></Route>                 
 
           {/* rutas privadas : el usuario debe estar registrado */}
 

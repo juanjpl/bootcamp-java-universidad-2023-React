@@ -7,7 +7,9 @@
         RXJS:'/rxjs',
         REQ_RES:'reqapi',
         POKE_HOME:'/pokehome',
-        CONTEXT:'/context'
+        CONTEXT:'/context',
+        PROFILE:'/profile',
+        LOGIN:'/login'
     },
     private:{
         ADMIN:'/admin',

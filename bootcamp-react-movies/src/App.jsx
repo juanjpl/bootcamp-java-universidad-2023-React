@@ -1,12 +1,6 @@
-import { useEffect, useState } from "react";
+
 import { Provider } from "react-redux";
 import "./App.css";
-import { getPersona, getValor } from "./app-utils/app-utils";
-import Auto from "./app-utils/app-utils";
-import MyfirstButton from "./user/create/ui/Button";
-import { getUser } from "./user/get/application/get-user";
-import { UserDetails } from "./user/user-ui/ui/UserDetails";
-import { UserPage } from "./user/page/UserPage";
 import EcommerceStore from "./redux/store";
 import { AppRouter } from "./AppRouter";
 import "/node_modules/primeflex/primeflex.css";
@@ -14,84 +8,7 @@ import "/node_modules/primeflex/primeflex.css";
 /*App es la funcion ( componente ) principal, o que se carga primero */
 
 function App() {
-  const [user, setUser] = useState(undefined);
-  const [cont, setCont] = useState(1);
-  const [userMails, setUserMails] = useState(new Set([]));
-
-  const get = async (e) => {
-    //debugger;
-    const url = `${import.meta.env.VITE_REQ_SINGLE_USER}/${cont}`;
-    const user = await getUser(url);
-    //console.log(user);
-    setUser((prev) => user);
-    setCont((prev) => prev + 1);
-  };
-
-  const resetUser = () => {
-    setUser((prev) => undefined);
-  };
-
-  const [valor, setValor] = useState(getValor);
-  //definir otro estado pero con un objeto
-
-  const [persona, setPersona] = useState(getPersona);
-
-  const cambiarValor = (nuevoValor) => {
-    setValor(nuevoValor);
-    console.log(nuevoValor);
-  };
-
-  const sumar = () => {
-    setValor((prev) => prev + 1);
-  };
-
-  const restar = () => {
-    setValor((prev) => prev - 1);
-  };
-
-  const mostrarEstado = () => {
-    alert(valor);
-    alert(JSON.stringify(persona));
-  };
-
-  const guardarPersona = () => {
-    localStorage.setItem(
-      "app",
-      JSON.stringify({
-        valor,
-        persona: persona,
-      })
-    );
-  };
-
-  const guardarEstado = () => {
-    localStorage.setItem(
-      "app",
-      JSON.stringify({
-        valor,
-        persona: persona,
-      })
-    );
-  };
-
-  const acelerarAuto = () => {
-    const nuevoAuto = new Auto("Pirulo");
-    nuevoAuto.acelerar();
-  };
-
-  //*********************************************************************** */
-  //hook useeffect ...
-  useEffect(() => {
-    console.log(user);
-    console.log("Nuevo Usuario");
-
-    if (user) {
-      userMails.add(user.email);
-      //
-      setUserMails((prev) => prevs);
-      console.log(userMails);
-    }
-  }, [user]);
+ 
 
   return (
     <>

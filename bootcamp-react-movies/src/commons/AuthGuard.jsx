@@ -7,7 +7,7 @@ export const AuthGuard = ()=>{
 
     const loginSlice = useSelector(store => store.users);
 
-    return loginSlice.email ? <Outlet/> : <Navigate replace to={'/'} />
+    return <Outlet/>;
 }
 
 export default AuthGuard;

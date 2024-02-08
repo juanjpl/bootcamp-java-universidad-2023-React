@@ -5,6 +5,8 @@ export const USER_KEY = "user";
 const UserEmptyState =  {
     name: "",
     email: "",
+    surname:"",
+    avatar:""
   };
 
 
