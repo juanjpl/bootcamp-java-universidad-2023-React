@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { routes } from "./routes";
 import { BrowserRouter, Link, NavLink, Route, Routes } from "react-router-dom";
 
@@ -6,27 +6,44 @@ import { Menubar } from "primereact/menubar";
 import { InputText } from "primereact/inputtext";
 import { Badge } from "primereact/badge";
 import { Avatar } from "primereact/avatar";
+import { useDispatch, useSelector } from "react-redux";
+import { resetUser } from "../redux/users/user";
 
 const Navbar = () => {
+  //necesito saber si existe en redux
+  const user = useSelector((store) => store.users);
+  const dispatcher = useDispatch();
+  const [userLogin, setUserLogin] = useState(false);
+
   const itemRenderer = (item) => (
-    <NavLink className="flex align-items-center p-menuitem-link" >
-    <span className={item.icon} />
-    <span className="mx-2">{item.label}</span>
-    {item.badge && <Badge className="ml-auto" value={item.badge} />}
-    {item.shortcut && <span className="ml-auto border-1 surface-border border-round surface-100 text-xs p-1">{item.shortcut}</span>}
-</NavLink>
+    <NavLink className="flex align-items-center p-menuitem-link">
+      <span className={item.icon} />
+      <span className="mx-2">{item.label}</span>
+      {item.badge && <Badge className="ml-auto" value={item.badge} />}
+      {item.shortcut && (
+        <span className="ml-auto border-1 surface-border border-round surface-100 text-xs p-1">
+          {item.shortcut}
+        </span>
+      )}
+    </NavLink>
   );
+
   const items = [
     {
       label: "Home",
       icon: "pi pi-home",
       url: `${routes.public.INDEX}`,
-      direction:`${routes.public.INDEX}`
+      direction: `${routes.public.INDEX}`,
     },
     {
       label: "Pokemon",
       icon: "pi pi-star",
       url: `${routes.public.POKE_HOME}`,
+    },
+    {
+      label: "Pick & Morty",
+      icon: "pi pi-star",
+      url: `${routes.public.RICKMORTY}`,
     },
     {
       label: "Profile",
@@ -37,6 +54,17 @@ const Navbar = () => {
       label: "Login",
       icon: "pi pi-star",
       url: `${routes.public.LOGIN}`,
+    },
+    
+    {
+      label: "Rick & Morty 2",
+      icon: "pi pi-star",
+      url: `${routes.public.RICKMORTY2}`,
+    },
+    {
+      label: "Pokemon x 2",
+      icon: "pi pi-star",
+      url: `${routes.public.POKE_HOME2}`,
     },
     {
       label: "Projects",
@@ -112,6 +140,15 @@ const Navbar = () => {
       />
     </div>
   );
+
+  const logout = () => {
+    dispatcher(resetUser());
+  };
+
+  useEffect(() => {
+   // setUserLogin((prev) => !!user.token);
+  }, []);
+
   return (
     <>
       <div className="card">
@@ -128,7 +165,13 @@ const Navbar = () => {
       <NavLink to={routes.private.ACCOUNT}>Account</NavLink>
       <NavLink to={routes.private.ADMIN}>Admin</NavLink>
       <NavLink to={routes.public.PROFILE}>Profile</NavLink>
-      <NavLink to={routes.public.LOGIN}>Login</NavLink>
+      {user.token ? (
+        <NavLink to={routes.public.HOME} onClick={logout}>
+          LOGOUT
+        </NavLink>
+      ) : (
+        <NavLink to={routes.public.LOGIN}>Login</NavLink>
+      )}
     </>
   );
 };

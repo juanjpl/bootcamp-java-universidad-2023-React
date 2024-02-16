@@ -1,17 +1,17 @@
-import { toLogin } from "../infrastructure/login-adapter";
+
 
 
 export const login =(repository , adapter)=>{
 
 
-    const exec = async (username, password) =>{
+    const exec = async (userName, password) =>{
 
-        const response = await repository(username, password);
+        const response = await repository(userName, password);
 
         //puedo adaptar la respuesta
         const adapted = adapter(response);
 
-        return adapted;
+        return adapted; 
     }
 
     return exec;

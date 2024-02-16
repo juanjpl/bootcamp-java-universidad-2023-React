@@ -1,32 +1,43 @@
-import React, { useRef, useState } from "react";
-import { useFormik } from "formik";
-import { Calendar } from "primereact/calendar";
-import { Button } from "primereact/button";
-import { Toast } from "primereact/toast";
-import { classNames } from "primereact/utils";
+import React, { useState } from "react";
 import { login } from "./application/login";
 import { loginRepository } from "./infrastructure/login-repository";
 import { appConfig } from "../config";
-
-import { InputText } from "primereact/inputtext";
-import { InputNumber } from "primereact/inputnumber";
 import { toLogin } from "./infrastructure/login-adapter";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from "react-redux";
+import { createUser } from "../redux/users/user";
+import { useNavigate } from "react-router-dom";
+import { routes } from "../navbar/routes";
+
+
 
 export const Login = () => {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+
+    const dispatcher = useDispatch();
+    const navigate = useNavigate();
+
+  const [userName, setUserName] = useState(undefined);
+  const [password, setPassword] = useState(undefined);
+
+
 
   const loginn = async () => {
+
     const loginUseCase = login(
       loginRepository(appConfig.REQ_RES_PATH),
       toLogin()
     );
+
+
     try {
-        const userLoginData = await loginUseCase();
-    console.log(userLoginData);
+        const userLoginData = await loginUseCase(userName,password);
+        toast("Usuario encontrado !!!")     
+        dispatcher(createUser(userLoginData))    
+        navigate(routes.public.PROFILE)         
 
     } catch (error) {
-        console.log(error)
+        toast(error.message)
     }
 
    
@@ -34,8 +45,8 @@ export const Login = () => {
     //dispatch al redux del usuario
   };
   return (
-    <div>
-      <div className="mb-3">
+    <div className="col-lg-6  mx-auto">
+      <div className=" mb-3">
         <label htmlFor="exampleInputEmail1" className="form-label">
           User Name
         </label>
@@ -63,6 +74,8 @@ export const Login = () => {
           onChange={(e)=>setPassword(e.target.value)}
         />
       </div>
+
+      <ToastContainer />
      
       <button type="button" className="btn btn-primary" onClick={loginn}>
        Login

@@ -12,6 +12,9 @@ import { Account } from "./account/Account";
 import { Admin } from "./admin/Admin";
 import { Profile } from "./profile/Profile";
 import { Login } from "./login/Login";
+import { RickMortyHome } from "./rickmorty/ui/RickMortyHome";
+import { RickMorty2 } from "./rickMorty2/RickMorty2";
+import { PokemonHome2 } from "./pokemon2/ui/PokemonHome2";
 
 export function AppRouter() {
   return (
@@ -27,8 +30,11 @@ export function AppRouter() {
           <Route path={routes.public.RXJS} element={<Component1 />}></Route>
           <Route path={routes.public.POKE_HOME} element={<PokemonHome />}></Route>
           <Route path={routes.public.CONTEXT} element={<Component1 />}></Route>
+          <Route path={routes.public.RICKMORTY} element={<RickMortyHome />}></Route>
           <Route path={routes.public.PROFILE} element={<Profile />}></Route>
-          <Route path={routes.public.LOGIN} element={<Login />}></Route>                 
+          <Route path={routes.public.LOGIN} element={<Login />}></Route>   
+          <Route path={routes.public.RICKMORTY2} element={<RickMorty2 />}></Route>               
+          <Route path={routes.public.POKE_HOME2} element={<PokemonHome2/>}></Route>                   
 
           {/* rutas privadas : el usuario debe estar registrado */}
 

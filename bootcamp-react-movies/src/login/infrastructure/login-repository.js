@@ -1,30 +1,34 @@
+export const loginRepository = (urlBase) => {
+
+  const loginEndpoint = "api/login";
+
+  const exec = async (userName, password) => {
+    const data = {
+      "email": userName,
+      "password": password
+    };
+
+//"https://reqres.in/api/login"
 
 
-export const loginRepository = (urlBase)=>{
+//
 
-    const loginEndpoint = 'api/login';
+    const ret = await fetch(`${urlBase}/${loginEndpoint}`, {
+        method: 'POST',
+        headers : {"Content-Type": "application/json"} , 
+      body: JSON.stringify(data),
+    });
 
-    const exec = async (username, password)=>{
+    //console.log(ret)
 
-        const data ={
-            "email": username,
-            "password": password
-        }
-        const ret= fetch(`${urlBase}/${loginEndpoint}`,{
-            headers:{
-                "Content-Type":"application/json",
-            },
-            method:'POST',
-            body:JSON.stringify(data)
-            
-        });
-        if(ret.status != 200){
-            throw new Error('Username or password invalid');
-        }
-        return (await ret).json();
+    if (ret.status != 200) {
+      throw new Error("Username or password invalid --- Juan Lima");
+
+      
     }
 
-   
+    return await ret.json();
+  };
 
-    return exec;
-}
+  return exec;
+};

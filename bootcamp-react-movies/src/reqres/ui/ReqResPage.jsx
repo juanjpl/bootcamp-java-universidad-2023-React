@@ -20,8 +20,10 @@ export const ReqResPage = () => {
   const findData = async () => {
     //debugger;
     //usando un caso de uso > infrastructure > domain
+   
     const useCase = findResource(
       //resourceRepository(appConfig.REQ_RES_PATH)
+      
       resourceRepository(appConfig.REQ_RES_PATH_COLORS)
     );
 

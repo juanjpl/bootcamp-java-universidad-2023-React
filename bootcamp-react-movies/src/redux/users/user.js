@@ -6,7 +6,8 @@ const UserEmptyState =  {
     name: "",
     email: "",
     surname:"",
-    avatar:""
+    avatar:"",
+    token:""
   };
 
 
